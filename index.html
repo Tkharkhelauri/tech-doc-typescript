@@ -5,32 +5,41 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<title>TypeScript Introduction</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
+
 	<body>
 		<nav id="navbar">
-			<header>TypeScript Overview</header>
+			<header>TypeScript Introduction</header>
 			<ul>
 				<li>
-					<a class="nav-link" href="#What_is_TypeScript?">Introduction</a>
+					<a class="nav-link" href="#What_is_TypeScript?">What is TypeScript?</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#Why_TypeScript?">What you should already know</a>
+					<a class="nav-link" href="#Why_TypeScript?">Why TypeScript?</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#TypeScript_and_JavaScript">JavaScript and Java</a>
+					<a class="nav-link" href="#TypeScript_and_JavaScript">TypeScript and JavaScript</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#TypeScript_Code_Generation">Hello world</a>
+					<a class="nav-link" href="#TypeScript_Code_Generation">TypeScript Code Generation</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#Modern_JavaScript_Now_(Downleveling)">Variables</a>
+					<a class="nav-link" href="#Modern_JavaScript_Now_(Downleveling)"
+						>Modern JavaScript Now (Downleveling)</a
+					>
 				</li>
 			</ul>
 		</nav>
 		<main id="main-doc">
 			<section class="main-section" id="introduction">
-				<h1 class="title">What_is_TypeScript?</h1>
+				<!-- <h1 class="title">What is TypeScript?</h1> -->
 				<header class="subtitle">What is TypeScript?</header>
 				<p>
 					TypeScript is a strongly typed programming language that builds on JavaScript. It was
@@ -92,38 +101,43 @@
 					For instance, consider a function in a JavaScript file with the .js extension, such as the
 					following:
 				</p>
-				<code>const sum = (a, b) => a + b;</code>
+				<code class="code-expressive">const sum = (a, b) => a + b;</code>
 				<p>
 					The function can be converted and used in TypeScript by changing the file extension to
-					<code>.ts</code>. However, if the same function is annotated with TypeScript types, it
-					cannot be executed in any JavaScript engine without compilation. The following TypeScript
-					code will produce a syntax error if it is not compiled:
+					<code class="code-expressive">.ts</code>. However, if the same function is annotated with
+					TypeScript types, it cannot be executed in any JavaScript engine without compilation. The
+					following TypeScript code will produce a syntax error if it is not compiled:
 				</p>
-				<code>const sum = (a: number, b: number): number => a + b;</code>
+				<code class="code-expressive">const sum = (a: number, b: number): number => a + b;</code>
 				<p>
 					TypeScript was designed to detect possible exceptions that can occur at runtime during
 					compilation time by having the developer define the intent with type annotations. In
 					addition, TypeScript can also catch issues if no type annotation is provided. For
 					instance, the following code snippet does not specify any TypeScript types:
 				</p>
-				<code>
-					const items = [{ x: 1 }, { x: 2 }]; const result = items.filter(item => item.y);
+				<code class="code-expressive">
+					const items = [{ x: 1 }, { x: 2 }];<br />
+					const result = items.filter(item => item.y);
 				</code>
 				<p>In this case, TypeScript detects an error and reports:</p>
-				<code>Property 'y' does not exist on type '{ x: number; }'.</code>
+				<code class="code-expressive">Property 'y' does not exist on type '{ x: number; }'.</code>
 				<p>
 					TypeScript’s type system is largely influenced by the runtime behavior of JavaScript. For
 					example, the addition operator (+), which in JavaScript can either perform string
 					concatenation or numeric addition, is modeled in the same way in TypeScript:
 				</p>
-				<code>const result = '1' + 1; // Result is of type string</code>
+				<code class="code-expressive">const result = '1' + 1; // Result is of type string</code>
 				<p>
 					The team behind TypeScript has made a deliberate decision to flag unusual usage of
 					JavaScript as errors. For instance, consider the following valid JavaScript code:
 				</p>
-				<code>const result = 1 + true; // In JavaScript, the result is equal 2</code>
+				<code class="code-expressive"
+					>const result = 1 + true; // In JavaScript, the result is equal 2</code
+				>
 				<p>However, TypeScript throws an error:</p>
-				<code>Operator '+' cannot be applied to types 'number' and 'boolean'.</code>
+				<code class="code-expressive"
+					>Operator '+' cannot be applied to types 'number' and 'boolean'.</code
+				>
 				<p>
 					This error occurs because TypeScript strictly enforces type compatibility, and in this
 					case, it identifies an invalid operation between a number and a boolean.
@@ -139,25 +153,36 @@
 					during compilation. TypeScript can still output JavaScript even in the presence of type
 					errors. Here is an example of TypeScript code with a type error:
 				</p>
-				<code
-					>const add = (a: number, b: number): number => a + b; const result = add('x', 'y'); //
-					Argument of type 'string' is not assignable to parameter of type 'number'.</code
+				<code class="code-expressive"
+					>const add = (a: number, b: number): number => a + b; <br />
+					const result = add('x', 'y'); // Argument of type 'string' is not assignable to parameter
+					of type 'number'.</code
 				>
 				<p>However, it can still produce executable JavaScript output:</p>
-				<code>'use strict'; const add = (a, b) => a + b; const result = add('x', 'y'); // xy </code>
+				<code class="code-expressive"
+					>'use strict';<br />
+					const add = (a, b) => a + b;<br />
+					const result = add('x', 'y'); // xy
+				</code>
 				<p>It is not possible to check TypeScript types at runtime. For example:</p>
-				<code
-					>interface Animal { name: string; } interface Dog extends Animal { bark: () => void; }
-					interface Cat extends Animal { meow: () => void; } const makeNoise = (animal: Animal) => {
-					if (animal instanceof Dog) { // 'Dog' only refers to a type, but is being used as a value
-					here. // ... } };</code
+				<code class="code-expressive"
+					>interface Animal {<br />
+					name: string;<br />
+					} interface Dog extends Animal {<br />
+					bark: () => void; <br />}<br />
+					interface Cat extends Animal {<br />
+					meow: () => void;<br />
+					} <br />const makeNoise = (animal: Animal) => {<br />
+					if (animal instanceof Dog) {<br />
+					// 'Dog' only refers to a type, but is being used as a value here.<br />
+					// ... <br />} <br />};</code
 				>
 				<p>
 					As the types are erased after compilation, there is no way to run this code in JavaScript.
 					To recognize types at runtime, we need to use another mechanism. TypeScript provides
 					several options, with a common one being “tagged union”. For example:
 				</p>
-				<code
+				<code class="code-expressive"
 					>interface Dog { kind: 'dog'; // Tagged union bark: () => void; } interface Cat { kind:
 					'cat'; // Tagged union meow: () => void; } type Animal = Dog | Cat; const makeNoise =
 					(animal: Animal) => { if (animal.kind === 'dog') { animal.bark(); } else { animal.meow();
@@ -176,14 +201,14 @@
 					TypeScript is a superset of JavaScript, so the “class” keyword can be used as a type and
 					value at runtime.
 				</p>
-				<code
-					>class Animal { constructor(public name: string) {} } class Dog extends Animal {
+				<code class="code-expressive">
+					class Animal { constructor(public name: string) {} } class Dog extends Animal {
 					constructor( public name: string, public bark: () => void ) { super(name); } } class Cat
 					extends Animal { constructor( public name: string, public meow: () => void ) {
 					super(name); } } type Mammal = Dog | Cat; const makeNoise = (mammal: Mammal) => { if
 					(mammal instanceof Dog) { mammal.bark(); } else { mammal.meow(); } }; const dog = new
-					Dog('Fido', () => console.log('bark')); makeNoise(dog);</code
-				>
+					Dog('Fido', () => console.log('bark')); makeNoise(dog);
+				</code>
 				<p>
 					In JavaScript, a “class” has a “prototype” property, and the “instanceof” operator can be
 					used to test if the prototype property of a constructor appears anywhere in the prototype
@@ -195,7 +220,7 @@
 				</p>
 			</section>
 
-			<section class="main-section" id="Modern_JavaScript_Now">
+			<section class="main-section" id="Modern_JavaScript_Now_(Downleveling)">
 				<header>Modern JavaScript Now (Downleveling)</header>
 				<p>
 					TypeScript can compile code to any released version of JavaScript since ECMAScript 3
