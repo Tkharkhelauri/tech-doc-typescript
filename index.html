@@ -16,7 +16,7 @@
 
 	<body>
 		<nav id="navbar">
-			<header>TypeScript Introduction</header>
+			<header class="title">TypeScript Introduction</header>
 			<ul>
 				<li>
 					<a class="nav-link" href="#What_is_TypeScript?">What is TypeScript?</a>
@@ -41,11 +41,11 @@
 			<section class="main-section" id="introduction">
 				<!-- <h1 class="title">What is TypeScript?</h1> -->
 				<header class="subtitle">What is TypeScript?</header>
-				<p>
+				<>
 					TypeScript is a strongly typed programming language that builds on JavaScript. It was
 					originally designed by Anders Hejlsberg in 2012 and is currently developed and maintained
 					by Microsoft as an open source project.
-				</p>
+				</
 				<p>
 					TypeScript compiles to JavaScript and can be executed in any JavaScript engine (e.g., a
 					browser or server Node.js).
@@ -55,10 +55,6 @@
 					imperative, and object-oriented. TypeScript is neither an interpreted nor a compiled
 					language.
 				</p>
-				<!-- <ul>
-					<li></li>
-					<li></li>
-				</ul> -->
 			</section>
 
 			<section class="main-section" id="Why_TypeScript?">
@@ -167,7 +163,7 @@
 				<p>It is not possible to check TypeScript types at runtime. For example:</p>
 				<code class="code-expressive"
 					>interface Animal {<br />
-					name: string;<br />
+					>name: string;<br />
 					} interface Dog extends Animal {<br />
 					bark: () => void; <br />}<br />
 					interface Cat extends Animal {<br />
@@ -183,10 +179,10 @@
 					several options, with a common one being “tagged union”. For example:
 				</p>
 				<code class="code-expressive"
-					>interface Dog { kind: 'dog'; // Tagged union bark: () => void; } interface Cat { kind:
-					'cat'; // Tagged union meow: () => void; } type Animal = Dog | Cat; const makeNoise =
-					(animal: Animal) => { if (animal.kind === 'dog') { animal.bark(); } else { animal.meow();
-					} }; const dog: Dog = { kind: 'dog', bark: () => console.log('bark'), }; makeNoise(dog);
+					>interface Dog {<br /> kind: 'dog'; // Tagged union <br />bark: () => void;<br /> } <br />interface Cat { <br />kind:
+					'cat'; // Tagged union <br />meow: () => void; <br />} type Animal = Dog | Cat;<br /> const makeNoise =
+					(animal: Animal) => {<br /> if (animal.kind === 'dog') {<br /> animal.bark(); <br />} else {<br /> animal.meow();<br />
+					}<br /> };<br /> const dog: Dog = {<br /> kind: 'dog',<br /> bark: () => console.log('bark'),<br /> };<br /> makeNoise(dog);
 				</code>
 				<p>
 					The property “kind” is a value that can be used at runtime to distinguish between objects
@@ -202,12 +198,12 @@
 					value at runtime.
 				</p>
 				<code class="code-expressive">
-					class Animal { constructor(public name: string) {} } class Dog extends Animal {
-					constructor( public name: string, public bark: () => void ) { super(name); } } class Cat
-					extends Animal { constructor( public name: string, public meow: () => void ) {
-					super(name); } } type Mammal = Dog | Cat; const makeNoise = (mammal: Mammal) => { if
-					(mammal instanceof Dog) { mammal.bark(); } else { mammal.meow(); } }; const dog = new
-					Dog('Fido', () => console.log('bark')); makeNoise(dog);
+					class Animal {<br /> constructor(public name: string) {} <br />} <br />class Dog extends Animal {<br />
+					constructor( <br />public name: string, public bark: () => void ) { super(name); } } class Cat
+					extends Animal { constructor( public name: string,<br /> public meow: () => void <br />) {<br />
+					super(name);<br /> } <br />} <br />type Mammal = Dog | Cat;<br /> const makeNoise = (mammal: Mammal) => { <br />if
+					(mammal instanceof Dog) {<br /> mammal.bark(); <br />} else {<br /> mammal.meow();<br /> }<br /> };<br /> const dog = new
+					Dog('Fido', () => console.log('bark'));<br /> makeNoise(dog);
 				</code>
 				<p>
 					In JavaScript, a “class” has a “prototype” property, and the “instanceof” operator can be
